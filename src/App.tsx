@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import styled from '@emotion/styled';
 import { useState, useRef, useEffect } from 'react';
 import { fetchGithubProjects } from './utils/github';
@@ -409,32 +409,6 @@ const AchievementCard = styled(motion.div)`
   }
 `;
 
-const TestimonialCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
-  
-  .quote {
-    font-size: 1.2rem;
-    font-style: italic;
-    margin: 1rem 0;
-    color: #e0e0e0;
-  }
-  
-  .author {
-    font-weight: 600;
-    color: #60a5fa;
-  }
-  
-  .role {
-    font-size: 0.9rem;
-    color: #a0aec0;
-  }
-`;
-
 const FilterButton = styled(motion.button)`
   padding: 0.5rem 1.5rem;
   background: rgba(255, 255, 255, 0.05);
@@ -557,6 +531,32 @@ const MobileMenu = styled(motion.div)`
   padding: 2rem;
 `;
 
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+`;
+
+const SocialLink = styled(motion.a)`
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    scale: 1.1;
+    color: #60a5fa;
+    background: rgba(255, 255, 255, 0.1);
+  }
+`;
+
 const scrollToProjects = () => {
   const projectsSection = document.querySelector('#projects');
   projectsSection?.scrollIntoView({ behavior: 'smooth' });
@@ -567,17 +567,26 @@ const scrollToContact = () => {
   contactSection?.scrollIntoView({ behavior: 'smooth' });
 };
 
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  type: string;
+  github: string;
+}
+
 function App() {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
+  useScroll({
     target: ref,
     offset: ["start start", "end start"]
   });
 
   const [selectedFilter, setSelectedFilter] = useState('all');
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -734,8 +743,6 @@ function App() {
     }
   ];
 
-  const aboutPhotos = [];
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -759,6 +766,54 @@ function App() {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const renderProjectCard = (project: Project, index: number) => (
+    <ProjectCard key={index}>
+      <a href={project.github} target="_blank" rel="noopener noreferrer">
+        <div 
+          className="project-image"
+          style={{ backgroundImage: `url(${project.image})` }}
+        />
+      </a>
+      <h3>{project.title}</h3>
+      <p>{project.description}</p>
+      <div className="tech-tags">
+        {project.tech.map((tech, i) => (
+          <span key={i} className="tech-tag">{tech}</span>
+        ))}
+      </div>
+      <motion.a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          marginTop: '1rem',
+          color: '#60a5fa',
+          textDecoration: 'none',
+          fontSize: '0.9rem'
+        }}
+        whileHover={{ x: 5 }}
+      >
+        View on GitHub →
+      </motion.a>
+    </ProjectCard>
+  );
+
+  const getSocialLink = (social: string): string => {
+    switch (social) {
+      case 'GitHub':
+        return 'https://github.com/Galang0304';
+      case 'LinkedIn':
+        return 'https://www.linkedin.com/in/galang-putra-ananda-b0b3b7227/';
+      case 'Instagram':
+        return 'https://www.instagram.com/galang_ananda/';
+      default:
+        return '#';
     }
   };
 
@@ -1127,45 +1182,7 @@ function App() {
           </div>
         ) : (
           <ProjectGrid>
-            {filteredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.github}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div 
-                  className="project-image"
-                  style={{ backgroundImage: `url(${project.image})` }}
-                />
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="tech-tags">
-                  {project.tech.filter(Boolean).map((tech, i) => (
-                    <span key={i} className="tech-tag">{tech}</span>
-                  ))}
-                </div>
-                <motion.a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    marginTop: '1rem',
-                    color: '#60a5fa',
-                    textDecoration: 'none',
-                    fontSize: '0.9rem'
-                  }}
-                  whileHover={{ x: 5 }}
-                >
-                  Lihat di GitHub →
-                </motion.a>
-              </ProjectCard>
-            ))}
+            {filteredProjects.map((project, index) => renderProjectCard(project, index))}
           </ProjectGrid>
         )}
       </Section>
@@ -1394,44 +1411,19 @@ function App() {
         paddingBottom: '2rem',
         background: 'rgba(0, 0, 0, 0.3)'
       }}>
-        <motion.div
-          style={{ 
-            display: 'flex',
-            gap: '2rem',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            maxWidth: '800px'
-          }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          {['GitHub', 'LinkedIn', 'Twitter', 'Instagram'].map((social, index) => (
-            <motion.a
+        <SocialLinks>
+          {['GitHub', 'LinkedIn', 'Instagram'].map((social) => (
+            <SocialLink
               key={social}
-              href="#"
-              style={{
-                color: '#e0e0e0',
-                textDecoration: 'none',
-                fontSize: '1rem',
-                position: 'relative',
-                padding: '0.5rem 1rem',
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '50px',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)'
-              }}
-              whileHover={{ 
-                scale: 1.05, 
-                color: '#60a5fa',
-                background: 'rgba(255, 255, 255, 0.1)' 
-              }}
+              href={getSocialLink(social)}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
             >
               {social}
-            </motion.a>
+            </SocialLink>
           ))}
-        </motion.div>
+        </SocialLinks>
       </Section>
     </Container>
   );
