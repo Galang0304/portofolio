@@ -39,9 +39,13 @@ const Container = styled.div`
 const FloatingShape = styled(motion.div)`
   position: fixed;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(40px);
   z-index: 0;
   pointer-events: none;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const GlassOverlay = styled.div`
@@ -50,8 +54,12 @@ const GlassOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(125deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  background: linear-gradient(125deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   pointer-events: none;
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const Section = styled.section`
@@ -68,6 +76,11 @@ const Section = styled.section`
   @media (max-width: 768px) {
     padding: 2rem 1rem;
     min-height: auto;
+    
+    &::before {
+      backdrop-filter: none;
+      background: rgba(0, 0, 0, 0.3);
+    }
   }
 
   &::before {
@@ -817,6 +830,19 @@ function App() {
     }
   };
 
+  // Kurangi kompleksitas animasi di mobile
+  const isMobile = window.innerWidth <= 768;
+  
+  const animationProps = isMobile ? {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.3 }
+  } : {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8 }
+  };
+
   return (
     <Container ref={ref}>
       <Navbar
@@ -930,9 +956,7 @@ function App() {
       
       <Hero>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          {...animationProps}
         >
           <RoleTag>Frontend & Mobile Developer</RoleTag>
         </motion.div>

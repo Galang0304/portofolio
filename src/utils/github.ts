@@ -6,15 +6,15 @@ const GITHUB_API_BASE = 'https://api.github.com';
 // Gambar default untuk setiap jenis proyek
 const PROJECT_IMAGES = {
   mobile: {
-    flutter: "https://images.unsplash.com/photo-1617040619263-41c5a9ca7521?w=600&auto=format&fit=crop&q=60",
-    kotlin: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=600&auto=format&fit=crop&q=60",
-    default: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=60"
+    flutter: "https://images.unsplash.com/photo-1617040619263-41c5a9ca7521?w=400&auto=format&fit=crop&q=60",
+    kotlin: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=400&auto=format&fit=crop&q=60",
+    default: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&auto=format&fit=crop&q=60"
   },
   web: {
-    react: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&auto=format&fit=crop&q=60",
-    javascript: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&auto=format&fit=crop&q=60",
-    php: "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=600&auto=format&fit=crop&q=60",
-    default: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&auto=format&fit=crop&q=60"
+    react: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&auto=format&fit=crop&q=60",
+    javascript: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&auto=format&fit=crop&q=60",
+    php: "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=400&auto=format&fit=crop&q=60",
+    default: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&auto=format&fit=crop&q=60"
   }
 };
 
