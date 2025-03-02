@@ -83,8 +83,8 @@ Proyek ini dilisensikan di bawah [MIT License](LICENSE)
 
 ## 📞 Kontak
 
-- Email: your.email@example.com
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourusername)
+- Email: andiariegalang0@gmail.com
+- LinkedIn: [Andi Arya Galang](https://www.linkedin.com/in/andi-arya-galang-482906347/)
 - GitHub: [@Galang0304](https://github.com/Galang0304)
 
 ---
