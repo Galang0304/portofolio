@@ -81,11 +81,12 @@ Kunjungi website portfolio saya di: [https://your-portfolio-url.com](https://you
 
 Proyek ini dilisensikan di bawah [MIT License](LICENSE)
 
-## 📞 Kontak
+## 📞 Kontak & Sosial Media
 
 - Email: andiariegalang0@gmail.com
 - LinkedIn: [Andi Arya Galang](https://www.linkedin.com/in/andi-arya-galang-482906347/)
 - GitHub: [@Galang0304](https://github.com/Galang0304)
+- Instagram: [@_andigalang_](https://www.instagram.com/_andigalang_/)
 
 ---
 
