@@ -1,55 +1,92 @@
-# React + TypeScript + Vite
+# Portfolio Website - Andi Arya Galang
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sebuah website portfolio modern yang dibangun dengan React, TypeScript, dan Framer Motion. Website ini menampilkan pengalaman, proyek, dan keterampilan saya dalam pengembangan web dan mobile.
 
-Currently, two official plugins are available:
+## 🚀 Fitur
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✨ Animasi halus dengan Framer Motion
+- 📱 Fully responsive design
+- 🎨 UI modern dengan efek glassmorphism
+- 🌙 Dark mode by default
+- 🔍 Integrasi dengan GitHub API
+- 📊 Progress bar untuk skills
+- 📝 Form kontak interaktif
+- ⚡ Performa optimal
 
-## Expanding the ESLint configuration
+## 🛠️ Teknologi yang Digunakan
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 18
+- TypeScript
+- Emotion (Styled Components)
+- Framer Motion
+- Axios
+- GitHub API
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📦 Instalasi
+
+1. Clone repository ini:
+```bash
+git clone https://github.com/Galang0304/portofolio.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Masuk ke direktori proyek:
+```bash
+cd portofolio
 ```
-# portofolio
+
+3. Install dependencies:
+```bash
+npm install
+```
+
+4. Jalankan aplikasi dalam mode development:
+```bash
+npm run dev
+```
+
+5. Buka [http://localhost:5173](http://localhost:5173) di browser Anda.
+
+## 🔧 Konfigurasi
+
+1. Buat file `.env` di root direktori
+2. Tambahkan variabel environment berikut:
+```env
+VITE_GITHUB_USERNAME=Galang0304
+```
+
+## 📁 Struktur Proyek
+
+```
+portofolio/
+├── public/
+│   └── images/
+├── src/
+│   ├── components/
+│   ├── utils/
+│   ├── App.tsx
+│   └── main.tsx
+├── package.json
+└── README.md
+```
+
+## 🖼️ Screenshot
+
+![Portfolio Preview](public/images/preview.png)
+
+## 🌐 Live Demo
+
+Kunjungi website portfolio saya di: [https://your-portfolio-url.com](https://your-portfolio-url.com)
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE)
+
+## 📞 Kontak
+
+- Email: your.email@example.com
+- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourusername)
+- GitHub: [@Galang0304](https://github.com/Galang0304)
+
+---
+
+⭐ Dibuat dengan ❤️ oleh Andi Arya Galang
