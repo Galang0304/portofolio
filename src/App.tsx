@@ -824,7 +824,7 @@ function App() {
       case 'LinkedIn':
         return 'https://www.linkedin.com/in/galang-putra-ananda-b0b3b7227/';
       case 'Instagram':
-        return 'https://www.instagram.com/galang_ananda/';
+        return 'https://www.instagram.com/_andigalang_/';
       default:
         return '#';
     }
